@@ -6,7 +6,7 @@ EXPOSE 3001
 
 COPY package*.json ./
 
-RUN npm install
+CMD [ "npm", "install" ]
 
 COPY . .
 

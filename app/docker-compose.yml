@@ -1,6 +1,9 @@
 version: '3.9'
 services:
   frontend:
+    container_name: app_frontend
+    ports:
+      - 3000:3000
     build: ./frontend
     # ...
     depends_on:
@@ -13,6 +16,9 @@ services:
       timeout: 10s
       retries: 5
   backend:
+    container_name: app_backend
+    ports:
+      - 3001:3001
     build: ./backend
     # ...
     depends_on:
