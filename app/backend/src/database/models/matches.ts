@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import db from '.';
 
-class Matches extends Model {
+class Match extends Model {
   declare homeTeam: number;
   declare homeTeamGoals: number;
   declare awayTeam: number;
@@ -9,7 +9,7 @@ class Matches extends Model {
   declare inProgress: boolean;
 }
 
-Matches.init({
+Match.init({
   homeTeam: DataTypes.NUMBER,
   homeTeamGoals: DataTypes.NUMBER,
   awayTeam: DataTypes.NUMBER,
@@ -21,4 +21,4 @@ Matches.init({
   timestamps: false,
 });
 
-export default Matches;
+export default Match;
