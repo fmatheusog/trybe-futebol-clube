@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as cors from 'cors';
 
 class App {
   public app: express.Express;
@@ -18,9 +17,7 @@ class App {
     };
 
     this.app.use(accessControl);
-    this.app.use(cors());
-
-    this.app.get('/', async (_req, res) => { res.status(200).json({ teste: 'ok' }); });
+    this.app.use(express.json());
   }
 
   // ...

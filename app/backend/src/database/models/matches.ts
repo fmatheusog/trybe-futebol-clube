@@ -10,10 +10,10 @@ class Match extends Model {
 }
 
 Match.init({
-  homeTeam: DataTypes.NUMBER,
-  homeTeamGoals: DataTypes.NUMBER,
-  awayTeam: DataTypes.NUMBER,
-  awayTeamGoals: DataTypes.NUMBER,
+  homeTeam: DataTypes.INTEGER,
+  homeTeamGoals: DataTypes.INTEGER,
+  awayTeam: DataTypes.INTEGER,
+  awayTeamGoals: DataTypes.INTEGER,
   inProgress: DataTypes.BOOLEAN,
 }, {
   sequelize: db,

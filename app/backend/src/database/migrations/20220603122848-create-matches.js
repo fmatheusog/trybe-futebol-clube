@@ -9,16 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       home_team: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       home_team_goals: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       away_team: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       away_team_goals: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       in_progress: {
         type: Sequelize.BOOLEAN
