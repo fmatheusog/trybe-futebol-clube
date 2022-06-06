@@ -7,7 +7,7 @@ export default class AuthenticationController {
   async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
-      const loginResponse = this.authService.login(email, password);
+      const loginResponse = await this.authService.login(email, password);
 
       return res.status(200).json(loginResponse);
     } catch (err) {
