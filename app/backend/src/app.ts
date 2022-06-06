@@ -1,8 +1,9 @@
 import * as express from 'express';
-import AuthenticationRoutes from './routes/AuthenticationRoutes';
+import AuthRoutes from './routes/AuthenticationRoutes';
 
 class App {
   public app: express.Express;
+  public loginRoutes = new AuthRoutes();
 
   constructor() {
     this.app = express();
@@ -21,7 +22,7 @@ class App {
     this.app.use(express.json());
 
     // Routes
-    this.app.use('/login', AuthenticationRoutes);
+    this.loginRoutes.routes(this.app);
   }
 
   // ...

@@ -1,12 +1,19 @@
-import { Router } from 'express';
+import { Application } from 'express';
 import UserValidation from '../middlewares/userValidation.middleware';
 import AuthenticationController from '../controllers/AuthenticationController';
+import loginSchema from '../middlewares/schemas/login.schemas';
 
-const AuthenticationRoutes = Router();
-const authController = new AuthenticationController();
-const userValidation = new UserValidation();
+class AuthRoutes {
+  private authController = new AuthenticationController();
+  private userValidation = new UserValidation();
 
-AuthenticationRoutes.get('/validate');
-AuthenticationRoutes.post('/', userValidation.run, authController.login);
+  public routes(app: Application) {
+    app.post(
+      '/login',
+      (req, res, next) => this.userValidation.run(req, res, next, loginSchema),
+      (req, res) => this.authController.login(req, res),
+    );
+  }
+}
 
-export default AuthenticationRoutes;
+export default AuthRoutes;
