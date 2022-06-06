@@ -1,11 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import loginSchema from './schemas/login.schemas';
+import { Schema } from 'joi';
 
 export default class userValidation {
-  private schema = loginSchema;
-
-  public run(req: Request, res: Response, next: NextFunction) {
-    const { error } = this.schema.validate(req.body);
+  public run = (req: Request, res: Response, next: NextFunction, schema: Schema) => {
+    const { error } = schema.validate(req.body);
 
     if (error) {
       const { message, type } = error.details[0];
@@ -16,5 +14,5 @@ export default class userValidation {
     }
 
     next();
-  }
+  };
 }
