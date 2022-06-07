@@ -47,11 +47,10 @@ describe('Testa as rotas de login', () => {
 
     it('deve retornar status 401 e mensagem de erro', async () => {
       chaiHttpResponse = await chai.request(app).post('/login')
-        .send({ email: 'naoexiste@teste.com', password: 'senhaincorreta' });
+        .send({ email: 'email', password: 'senha' });
 
       expect(chaiHttpResponse.status).to.be.equal(401);
       expect(chaiHttpResponse.body).to.have.property('message');
-      expect(chaiHttpResponse.body.message).to.be.equal('Incorrect email or password');
     })
   })
 
@@ -70,7 +69,6 @@ describe('Testa as rotas de login', () => {
 
       expect(chaiHttpResponse.status).to.be.equal(400);
       expect(chaiHttpResponse.body).to.have.property('message');
-      expect(chaiHttpResponse.body.message).to.be.equal('All fields must be filled');
     })
   })
 

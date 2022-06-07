@@ -3,7 +3,7 @@ export const userExample = {
   username: 'Teste',
   role: 'admin',
   email: 'admin@teste.com',
-  password: 'senhasecreta'
+  password: '$2a$12$ho9onSIZcxusJ1YBvyS0fusJQ19X1hxO45nFCW8PjHRxAUNCm.Xqa'
 };
 
 export const tokenExample = 'tokensecreto';
