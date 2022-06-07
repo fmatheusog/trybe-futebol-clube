@@ -18,7 +18,7 @@ export default class AuthenticationService {
     if (!isPasswordCorrect) throw new Error(this.incorrectDataErrorMessage);
 
     const { id } = this.user;
-    const token = this.tokenService.generate(id);
+    const token = await this.tokenService.generate(id);
 
     return {
       user: {
