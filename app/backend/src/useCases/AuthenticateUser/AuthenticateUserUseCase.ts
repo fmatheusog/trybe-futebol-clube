@@ -20,7 +20,11 @@ export default class AuthenticateUserUseCase {
     const token = await tokenService.generate(user.id);
 
     return {
-      user,
+      user: {
+        username: user.username,
+        email: user.email,
+        role: user.role,
+      },
       token,
     };
   }
