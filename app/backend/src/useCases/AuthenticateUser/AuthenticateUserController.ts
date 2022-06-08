@@ -18,7 +18,7 @@ export default class AuthenticateUserController {
       return res.status(200).json(loginResponse);
     } catch (err) {
       return res.status(401).json({
-        message: 'errow',
+        message: (err as Error).message,
       });
     }
   }
