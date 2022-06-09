@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { JwtPayload, Secret, sign, SignOptions, verify } from 'jsonwebtoken';
 import ITokenProvider from '../ITokenProvider';
 
-export default class TokenService implements ITokenProvider {
+export default class JwtTokenProvider implements ITokenProvider {
   private secret: Secret = readFileSync('./jwt.evaluation.key', { encoding: 'utf-8' });
   private config: SignOptions = {
     expiresIn: '15m',
@@ -13,7 +13,7 @@ export default class TokenService implements ITokenProvider {
     return sign({ id }, this.secret, this.config);
   }
 
-  async decode(token: string): Promise<string | JwtPayload> {
-    return verify(token, this.secret);
+  async decode(token: string): Promise<JwtPayload> {
+    return verify(token, this.secret) as JwtPayload;
   }
 }

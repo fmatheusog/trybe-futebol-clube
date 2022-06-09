@@ -8,4 +8,10 @@ export default class UsersRepository implements IUsersRepository {
 
     return user as User;
   }
+
+  async findById(id: number): Promise<User> {
+    const user = await this.users.findOne({ where: { id } });
+
+    return user as User;
+  }
 }
