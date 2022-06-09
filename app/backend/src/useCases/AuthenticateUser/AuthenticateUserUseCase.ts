@@ -1,5 +1,5 @@
-import BCryptPasswordProvider from '../../provider/implementation/BCryptPasswordProvider';
-import TokenService from '../../provider/implementation/JwtTokenProvider';
+import BCryptPasswordProvider from '../../providers/implementation/BCryptPasswordProvider';
+import TokenService from '../../providers/implementation/JwtTokenProvider';
 import IUsersRepository from '../../repositories/IUsersRepository';
 import IAuthenticateuserDTO from './AuthenticateUserDTO';
 
