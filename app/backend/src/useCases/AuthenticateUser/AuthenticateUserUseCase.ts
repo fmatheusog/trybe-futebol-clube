@@ -22,6 +22,7 @@ export default class AuthenticateUserUseCase {
 
     return {
       user: {
+        id: user.id,
         username: user.username,
         email: user.email,
         role: user.role,
