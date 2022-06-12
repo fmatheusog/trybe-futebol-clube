@@ -6,7 +6,7 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 import User from '../database/models/users';
-import { tokenExample, userExample } from './mocks/UserMocks';
+import { userExample } from './mocks/UserMocks';
 
 import { Response } from 'superagent';
 
@@ -82,11 +82,34 @@ describe('Testa as rotas de login', () => {
     })
 
     it('deve retornar status 200 e o tipo de usuário (role)', async () => {
+      chaiHttpResponse = await chai.request(app).post('/login')
+        .send({ email: 'admin@teste.com', password: 'senhasecreta' });
+
+      const { token } = chaiHttpResponse.body;
+      
       chaiHttpResponse = await chai.request(app).get('/login/validate')
-        .set('authorization', tokenExample);
+        .set('authorization', token);
 
       expect(chaiHttpResponse.status).to.be.equal(200);
       expect(chaiHttpResponse.body).to.be.equal('admin');
+    })
+  })
+
+  describe('Testa se a rota /login/validate retorna acesso não-autorizado sem um token', () => {
+    before(async () => {
+      sinon.stub(User, 'findOne').resolves(null);
+    })
+
+    after(() => {
+      (User.findOne as sinon.SinonStub).restore();
+    })
+
+    it('deve retornar status 401 e mensagem de erro', async () => {
+      chaiHttpResponse = await chai.request(app).get('/login/validate')
+        .set('authorization', '');
+
+      expect(chaiHttpResponse.status).to.be.equal(401);
+      expect(chaiHttpResponse.body).to.have.property('message');
     })
   })
 });
