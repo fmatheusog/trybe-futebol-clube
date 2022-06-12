@@ -9,6 +9,8 @@ export default class GetUserRoleByIdUseCase {
   async execute(data: IGetUserRoleByIdDTO) {
     const user = await this.usersRepository.findById(data.id);
 
+    if (!user) throw new Error('User not found');
+
     return user.role;
   }
 }

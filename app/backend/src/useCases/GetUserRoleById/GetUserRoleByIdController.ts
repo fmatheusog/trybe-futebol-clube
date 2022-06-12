@@ -8,7 +8,7 @@ export default class GetUserRoleByIdController {
 
   async handle(req: Request, res: Response) {
     try {
-      const { auth } = req;
+      const { auth } = req.body;
       const userRole = await this.getUserRoleByIdUseCase.execute({ id: Number(auth.id) });
 
       return res.status(200).json(userRole);

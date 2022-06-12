@@ -12,7 +12,7 @@ const tokenValidation = async (req: Request, res: Response, next: NextFunction) 
     const tokenProvider = new JwtTokenProvider();
     const decoded = await tokenProvider.decode(token);
 
-    req.auth = decoded;
+    req.body.auth = decoded;
 
     next();
   } catch (err) {
