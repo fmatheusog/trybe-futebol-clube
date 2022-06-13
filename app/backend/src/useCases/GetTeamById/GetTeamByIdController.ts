@@ -7,8 +7,9 @@ export default class GetTeamByIdController {
   ) {}
 
   async handle(req: Request, res: Response) {
-    const { id } = req.body;
-    const team = await this.getTeambyIdUseCase.execute({ id });
+    const { id } = req.params;
+    const idNumber = Number(id);
+    const team = await this.getTeambyIdUseCase.execute({ id: idNumber });
 
     return res.status(200).json(team);
   }
