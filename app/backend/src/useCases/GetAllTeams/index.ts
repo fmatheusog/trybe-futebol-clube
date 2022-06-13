@@ -1,10 +1,10 @@
 import GetAllTeamsController from './GetAllTeamsController';
 import GetAllTeamsUseCase from './GetAllTeamsUseCase';
-// importar repositório
+import TeamsRepository from '../../repositories/implementations/TeamsRepository';
 
-// instanciar repositório
+const teamsRepository = new TeamsRepository();
 
-const getAllTeamsUseCase = new GetAllTeamsUseCase(); // passar repositório como parâmetro
+const getAllTeamsUseCase = new GetAllTeamsUseCase(teamsRepository); // passar repositório como parâmetro
 
 const getAllTeamsController = new GetAllTeamsController(getAllTeamsUseCase);
 
