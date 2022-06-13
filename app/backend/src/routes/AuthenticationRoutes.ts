@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { authenticateUserController } from '../useCases/AuthenticateUser';
+import { getUserRoleByIdController } from '../useCases/GetUserRoleById';
 import loginValidation from '../middlewares/loginValidation.middleware';
 import tokenValidation from '../middlewares/tokenValidation.middleware';
-import { getUserRoleByIdController } from '../useCases/GetUserRoleById';
 
 const AuthenticationRoutes = Router();
 
