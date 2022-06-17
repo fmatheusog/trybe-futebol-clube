@@ -54,3 +54,12 @@ export const allFinishedMatchesExample = [
     "inProgress": false,
   }
 ];
+
+export const newMatch = {
+  'id': 1,
+  'homeTeam': 1,
+  'homeTeamGoals': 2,
+  'awayTeam': 2,
+  'awayTeamGoals': 0,
+  'inProgress': false,
+}
