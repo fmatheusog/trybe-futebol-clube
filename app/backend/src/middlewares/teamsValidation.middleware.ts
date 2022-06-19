@@ -10,7 +10,7 @@ const teamsValidation = async (req: Request, res: Response, next: NextFunction) 
   const awayExists = await teamsRepository.findById(awayTeam);
 
   if (!homeExists || !awayExists) {
-    return res.status(401).json({
+    return res.status(404).json({
       message: 'There is no team with such id!',
     });
   }
