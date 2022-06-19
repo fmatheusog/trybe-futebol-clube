@@ -1,4 +1,5 @@
 import CreateMatchDTO from '../../useCases/CreateMatch/CreateMatchDTO';
+import UpdateMatchDTO from '../../useCases/UpdateMatch/UpdateMatchDTO';
 import Match from '../../database/models/matches';
 import IMatchesRepository from '../IMatchesRepository';
 
@@ -31,6 +32,15 @@ export default class MatchesRepository implements IMatchesRepository {
 
   async finishMatch(id: number): Promise<boolean> {
     await this.matches.update({ inProgress: false }, { where: { id } });
+
+    return true;
+  }
+
+  async updateMatch(data: UpdateMatchDTO): Promise<boolean> {
+    await this.matches.update({
+      homeTeamGoals: data.homeTeamGoals,
+      awayTeamGoals: data.awayTeamGoals,
+    }, { where: { id: data.id } });
 
     return true;
   }
