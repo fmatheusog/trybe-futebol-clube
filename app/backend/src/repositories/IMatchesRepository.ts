@@ -6,4 +6,5 @@ export default interface IMatchesRepository {
   getAllInProgressMatches(): Promise<Match[]>;
   getAllFinishedMatches(): Promise<Match[]>;
   createMatch(data: CreateMatchDTO): Promise<Match>;
+  finishMatch(id: number): Promise<boolean>;
 }

@@ -28,4 +28,10 @@ export default class MatchesRepository implements IMatchesRepository {
 
     return newTeam;
   }
+
+  async finishMatch(id: number): Promise<boolean> {
+    await this.matches.update({ inProgress: false }, { where: { id } });
+
+    return true;
+  }
 }
