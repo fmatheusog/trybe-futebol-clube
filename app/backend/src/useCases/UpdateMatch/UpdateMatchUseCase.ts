@@ -7,6 +7,10 @@ export default class UpdateMatchUseCase {
   ) {}
 
   async execute(data: UpdateMatchDTO) {
+    const match = await this.matchesRepository.findById(data.id);
+    if (!match) throw new Error('Match does not exist');
+    if (match.inProgress === false) throw new Error('Match already finished');
+
     await this.matchesRepository.updateMatch(data);
   }
 }

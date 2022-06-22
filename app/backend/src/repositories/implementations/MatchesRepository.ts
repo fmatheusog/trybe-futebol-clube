@@ -6,6 +6,12 @@ import IMatchesRepository from '../IMatchesRepository';
 export default class MatchesRepository implements IMatchesRepository {
   private matches = Match;
 
+  async findById(id: number): Promise<Match> {
+    const match = await this.matches.findOne({ where: { id } });
+
+    return match as Match;
+  }
+
   async getAllMatches(): Promise<Match[]> {
     const allMatches = await this.matches.findAll();
 

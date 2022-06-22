@@ -9,8 +9,13 @@ export default class UpdateMatchController {
   async handle(req: Request, res: Response) {
     const { id } = req.params;
     const { homeTeamGoals, awayTeamGoals } = req.body;
-    await this.updateMatchUseCase.execute({ id: Number(id), homeTeamGoals, awayTeamGoals });
 
-    return res.sendStatus(200);
+    try {
+      await this.updateMatchUseCase.execute({ id: Number(id), homeTeamGoals, awayTeamGoals });
+
+      return res.status(200).json({ message: 'Edited!' });
+    } catch (err) {
+      return res.status(401).json({ message: (err as Error).message });
+    }
   }
 }

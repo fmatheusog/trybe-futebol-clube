@@ -23,15 +23,15 @@ MatchesRoutes.post(
 );
 
 MatchesRoutes.patch(
-  '/:id',
-  tokenValidation,
-  (req, res) => updateMatchController.handle(req, res),
-);
-
-MatchesRoutes.patch(
   '/:id/finish',
   tokenValidation,
   (req, res) => finishMatchController.handle(req, res),
+);
+
+MatchesRoutes.patch(
+  '/:id',
+  tokenValidation,
+  (req, res) => updateMatchController.handle(req, res),
 );
 
 export default MatchesRoutes;
