@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import CreateMatchDTO from '../../useCases/CreateMatch/CreateMatchDTO';
 import UpdateMatchDTO from '../../useCases/UpdateMatch/UpdateMatchDTO';
 import Match from '../../database/models/matches';
@@ -10,6 +11,18 @@ export default class MatchesRepository implements IMatchesRepository {
     const match = await this.matches.findOne({ where: { id } });
 
     return match as Match;
+  }
+
+  async findByTeamId(teamId: number): Promise<Match[]> {
+    const matches = await this.matches.findAll({ where: {
+      [Op.or]: [
+        { homeTeam: teamId },
+        { awayTeam: teamId },
+      ],
+      inProgress: false,
+    } });
+
+    return matches;
   }
 
   async getAllMatches(): Promise<Match[]> {

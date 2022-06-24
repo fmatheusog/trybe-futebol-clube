@@ -4,6 +4,7 @@ import UpdateMatchDTO from '../useCases/UpdateMatch/UpdateMatchDTO';
 
 export default interface IMatchesRepository {
   findById(id: number): Promise<Match>;
+  findByTeamId(teamId: number): Promise<Match[]>;
   getAllMatches(): Promise<Match[]>;
   getAllInProgressMatches(): Promise<Match[]>;
   getAllFinishedMatches(): Promise<Match[]>;
